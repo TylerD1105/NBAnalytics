@@ -1,0 +1,15 @@
+# Node / Next.js
+node_modules/
+.next/
+out/
+
+# Env files
+.env
+.env.local
+
+# OS
+.DS_Store
+
+# Python (if you add backend later)
+.venv/
+__pycache__/

@@ -1,0 +1,11 @@
+[project]
+name = "nba-analytics-backend"
+version = "0.1.0"
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "python-dotenv"
+]
+
+[tool.uvicorn]
+factory = true
