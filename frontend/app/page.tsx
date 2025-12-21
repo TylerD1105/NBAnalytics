@@ -1,41 +1,120 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import TeamCard from "@/components/TeamCard";
+import {motion} from "motion/react";
 
-const TEAMS = [
-  { id: "ATL", name: "Atlanta Hawks" },
-  { id: "BOS", name: "Boston Celtics" },
-  { id: "LAL", name: "Los Angeles Lakers" },
-  { id: "GSW", name: "Golden State Warriors" },
+type Team = {
+  id: string;
+  name: string;
+  abbr: string;
+};
+
+const TEAMS: Team[] = [
+  { id: "ATL", name: "Atlanta Hawks", abbr: "ATL" },
+  { id: "BOS", name: "Boston Celtics", abbr: "BOS" },
+  { id: "BKN", name: "Brooklyn Nets", abbr: "BKN" },
+  { id: "CHA", name: "Charlotte Hornets", abbr: "CHA" },
+  { id: "CHI", name: "Chicago Bulls", abbr: "CHI" },
+  { id: "CLE", name: "Cleveland Cavaliers", abbr: "CLE" },
+  { id: "DAL", name: "Dallas Mavericks", abbr: "DAL" },
+  { id: "DEN", name: "Denver Nuggets", abbr: "DEN" },
+  { id: "DET", name: "Detroit Pistons", abbr: "DET" },
+  { id: "GSW", name: "Golden State Warriors", abbr: "GSW" },
+  { id: "HOU", name: "Houston Rockets", abbr: "HOU" },
+  { id: "IND", name: "Indiana Pacers", abbr: "IND" },
+  { id: "LAC", name: "LA Clippers", abbr: "LAC" },
+  { id: "LAL", name: "Los Angeles Lakers", abbr: "LAL" },
+  { id: "MEM", name: "Memphis Grizzlies", abbr: "MEM" },
+  { id: "MIA", name: "Miami Heat", abbr: "MIA" },
+  { id: "MIL", name: "Milwaukee Bucks", abbr: "MIL" },
+  { id: "MIN", name: "Minnesota Timberwolves", abbr: "MIN" },
+  { id: "NOP", name: "New Orleans Pelicans", abbr: "NOP" },
+  { id: "NYK", name: "New York Knicks", abbr: "NYK" },
+  { id: "OKC", name: "Oklahoma City Thunder", abbr: "OKC" },
+  { id: "ORL", name: "Orlando Magic", abbr: "ORL" },
+  { id: "PHI", name: "Philadelphia 76ers", abbr: "PHI" },
+  { id: "PHX", name: "Phoenix Suns", abbr: "PHX" },
+  { id: "POR", name: "Portland Trail Blazers", abbr: "POR" },
+  { id: "SAC", name: "Sacramento Kings", abbr: "SAC" },
+  { id: "SAS", name: "San Antonio Spurs", abbr: "SAS" },
+  { id: "TOR", name: "Toronto Raptors", abbr: "TOR" },
+  { id: "UTA", name: "Utah Jazz", abbr: "UTA" },
+  { id: "WAS", name: "Washington Wizards", abbr: "WAS" },
 ];
 
 export default function HomePage() {
   const router = useRouter();
-  const [teamId, setTeamId] = useState("");
+  const [query, setQuery] = useState("");
+
+  const filteredTeams = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return TEAMS;
+
+    return TEAMS.filter((t) => {
+      return (
+        t.name.toLowerCase().includes(q) ||
+        t.id.toLowerCase().includes(q) ||
+        t.abbr.toLowerCase().includes(q)
+      );
+    });
+  }, [query]);
+
+  const handleSelectTeam = (teamId: string) => {
+    router.push(`/teams/${teamId}`);
+  };
 
   return (
-    <main style={{ padding: 24 }}>
-      <h1>NBA Analytics</h1>
+    <main className="page">
+      <div className="bgGlow" aria-hidden="true" />
 
-      <select
-        value={teamId}
-        onChange={(e) => setTeamId(e.target.value)}
-      >
-        <option value="">Select a team</option>
-        {TEAMS.map((team) => (
-          <option key={team.id} value={team.id}>
-            {team.name}
-          </option>
+      <header className="header">
+        <div className="brand">
+          <div className="logoMark" aria-hidden="true">
+            <span />
+          </div>
+
+          <div>
+            <h1 className="title">NBA Analytics</h1>
+            <p className="subtitle">
+              Pick a team to view current season dashboards and player analytics.
+            </p>
+          </div>
+        </div>
+
+        <div className="searchRow">
+          <div className="searchWrap">
+            <span className="searchIcon" aria-hidden="true">
+              ⌕
+            </span>
+            <input
+              className="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search teams (e.g., Lakers, BOS, OKC)…"
+              aria-label="Search teams"
+            />
+          </div>
+
+          <div className="pill">
+            <span className="pillDot" aria-hidden="true" />
+            <span>{filteredTeams.length} teams</span>
+          </div>
+        </div>
+      </header>
+
+      <section className="grid" aria-label="Team selection grid">
+        {filteredTeams.map((team) => (
+          <TeamCard key={team.id} team={team} onSelect={handleSelectTeam} />
         ))}
-      </select>
+      </section>
 
-      <button
-        disabled={!teamId}
-        onClick={() => router.push(`/teams/${teamId}`)}
-      >
-        View Team
-      </button>
+      <footer className="footer">
+        <span className="footerMuted">
+          Frontend-only MVP. Data will be wired in later.
+        </span>
+      </footer>
     </main>
   );
 }
