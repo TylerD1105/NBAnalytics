@@ -9,8 +9,24 @@ const imgs = [
     "/images/BRK.png",
 ];
 
+type Team = {
+    team_id: string;
+    team_name: string;
+    team_abbreviation: string;
+    image_url: string;
+}
+
 export default function SwipeCarousel() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true });
+    const [teams, setTeams] = useState<Team[]>([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8000/teams')
+            .then(response => response.json())
+            .then(data => setTeams(data))
+            .catch(error => console.error('Error fetching teams:', error));
+    }, [])
+
 
     useEffect(() => {
     if (emblaApi) {
@@ -21,10 +37,9 @@ export default function SwipeCarousel() {
     return (
         <div className = {styles.embla} ref={emblaRef}>
             <div className={styles.embla__container}>
-                {imgs.map((img, idx) => (
-                    //TODO: Update alt text to link the img to the database entry for each so we can have names for teams as alt text instead of slide 1
-                    <div className = {styles.embla__slide} key={idx}>
-                        <img src={img} alt = {"Slide " + (idx + 1)}></img>
+                {teams.map((team, index) => (
+                    <div className = {styles.embla__slide} key = {index}>
+                        <img src = {team.image_url} alt = {team.team_name}></img>
                     </div>
                 ))}
 
