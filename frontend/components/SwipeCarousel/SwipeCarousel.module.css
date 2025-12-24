@@ -2,11 +2,10 @@
   overflow: hidden;
 }
 .embla__container {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 80%;
+  display: flex;
 }
 .embla__slide {
-  flex: 0 0 50%;
-  
+  flex: 0 0 auto;
+  margin-right: 50px;
+  margin-left: 50px;
 }

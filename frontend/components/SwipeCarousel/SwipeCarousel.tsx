@@ -15,7 +15,7 @@ type Team = {
     team_abbreviation: string;
     image_url: string;
 }
-
+//TODO: Make function that will call the embla API and based on which index is centered in the viewpoint, have index + 1 and index - 1 scale and animate to get bigger once it goes more towards the center?
 export default function SwipeCarousel() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true });
     const [teams, setTeams] = useState<Team[]>([]);
