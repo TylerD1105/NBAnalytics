@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { SwipeCarousel } from '../../../components/SwipeCarousel';
+import SwipeCarousel from '../../../components/SwipeCarousel/SwipeCarousel';
 
 const imgs = [
     "/images/ATL.png",
@@ -10,5 +10,5 @@ const imgs = [
 ];
 
 export default function Page() {
-return <div><SwipeCarousel /></div>
+return <div><SwipeCarousel/></div>
 };

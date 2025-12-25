@@ -2,8 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import TeamCard from "@/components/TeamCard";
-import {motion} from "motion/react";
+import SwipeCarousel from "../components/SwipeCarousel/SwipeCarousel";
 
 type Team = {
   id: string;
@@ -105,9 +104,7 @@ export default function HomePage() {
       </header>
 
       <section className="grid" aria-label="Team selection grid">
-        {filteredTeams.map((team) => (
-          <TeamCard key={team.id} team={team} onSelect={handleSelectTeam} />
-        ))}
+        <SwipeCarousel />
       </section>
 
       <footer className="footer">
