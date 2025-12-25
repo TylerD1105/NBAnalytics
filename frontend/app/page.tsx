@@ -104,7 +104,7 @@ export default function HomePage() {
       </header>
 
       <section className="grid" aria-label="Team selection grid">
-        <SwipeCarousel />;
+        <SwipeCarousel />
       </section>
 
       <footer className="footer">

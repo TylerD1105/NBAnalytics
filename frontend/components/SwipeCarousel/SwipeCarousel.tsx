@@ -1,13 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import styles from './SwipeCarousel.module.css';3
+import styles from './SwipeCarousel.module.css';
 
-const imgs = [
-    "/images/ATL.png",
-    "/images/BOS.png",
-    "/images/BRK.png",
-];
 
 type Team = {
     team_id: string;

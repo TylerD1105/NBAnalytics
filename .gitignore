@@ -9,6 +9,7 @@ out/
 
 # OS
 .DS_Store
+*.Identifier
 
 # Python (if you add backend later)
 .venv/
