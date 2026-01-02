@@ -15,6 +15,7 @@ class Team(Base):
     team_name = Column(String, nullable = False)
     abbreviation = Column(String, nullable = False)
     image_url = Column(String)
+    #Add more stats for teams, or, make individual Team-Stats table that will link
 
 Base.metadata.create_all(bind=engine)
 
@@ -44,3 +45,6 @@ async def read_teams():
     ]
     db.close()
     return result
+
+
+#Next step is to create another class and database where it will us
