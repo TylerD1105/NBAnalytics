@@ -3,8 +3,10 @@ from sqlalchemy import create_engine, Column, String, Integer, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
 
-DATABASE_URL = "sqlite:///../nba.db"
+BASE_DIR = Path(__file__).resolve().parent        # backend/app
+DATABASE_URL = f"sqlite:///{(BASE_DIR.parent / 'nba.db')}"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 sessionLocal = sessionmaker(autocommit = False, autoflush = False, bind = engine)
 Base = declarative_base()
@@ -57,6 +59,15 @@ class TeamStats(Base):
     points_per_game = Column(Float)
     rebounds_per_game = Column(Float)
     assists_per_game = Column(Float)
-    standing = Column(Integer)
     conference_standing = Column(Integer)
+    div_standing = Column(Integer)
     # Add more stats as needed
+
+@app.post("/team-stats/{team_id}/sync-stats")
+async def sync_team_stats(team_id: str):
+    from TeamStatFunction import fetch_team_stats
+    stats = fetch_team_stats(team_id)
+    db = sessionLocal()
+    db.merge(stats)
+    db.commit()
+    db.close()
