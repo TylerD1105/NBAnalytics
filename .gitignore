@@ -14,3 +14,7 @@ out/
 # Python (if you add backend later)
 .venv/
 __pycache__/
+
+
+#egg-info
+*.egg-info/

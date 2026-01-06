@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from sqlalchemy import create_engine, Column, String
+from sqlalchemy import create_engine, Column, String, Integer, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from fastapi.middleware.cors import CORSMiddleware
@@ -48,3 +48,15 @@ async def read_teams():
 
 
 #Next step is to create another class and database where it will us
+
+class TeamStats(Base):
+    __tablename__ = "team_stats"
+    team_id = Column(String, primary_key=True, index=True)
+    wins = Column(Integer)
+    losses = Column(Integer)
+    points_per_game = Column(Float)
+    rebounds_per_game = Column(Float)
+    assists_per_game = Column(Float)
+    standing = Column(Integer)
+    conference_standing = Column(Integer)
+    # Add more stats as needed
