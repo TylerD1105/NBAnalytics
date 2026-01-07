@@ -71,11 +71,17 @@ Base.metadata.create_all(bind=engine)
 @app.post("/team-stats/{team_id}/sync-stats")
 async def sync_team_stats(team_id: str):
     from TeamStatFunction import fetch_team_stats
-    stats = fetch_team_stats(team_id)
     db = sessionLocal()
-    db.merge(stats)
-    db.commit()
-    db.close()
+    try:
+        stats = fetch_team_stats(team_id)
+        db.merge(stats)
+        db.commit()
+        return {"team_id": team_id, "status": "success"}
+    except Exception as e:
+        db.rollback()
+        return {"team_id": team_id, "status": f"error: {str(e)}"}
+    finally:
+        db.close()
 
 @app.post("/team-stats/sync-all")
 async def sync_all_team_stats():
