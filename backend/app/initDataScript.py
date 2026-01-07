@@ -23,7 +23,7 @@ teamList = [
     {"team_id": "DEN", "team_name": "New York Knicks", "abbreviation": "NYK", "image_url": "/images/teams/NYK.png"},
     {"team_id": "DEN", "team_name": "Oklahoma City Thunder", "abbreviation": "OKC", "image_url": "/images/teams/OKC.png"},
     {"team_id": "DEN", "team_name": "Orlando Magic", "abbreviation": "ORL", "image_url": "/images/teams/ORL.png"},
-    {"team_id": "DEN", "team_name": "Philidelphia 76ers", "abbreviation": "PHI", "image_url": "/images/teams/PHI.png"},
+    {"team_id": "DEN", "team_name": "Philadelphia 76ers", "abbreviation": "PHI", "image_url": "/images/teams/PHI.png"},
     {"team_id": "DEN", "team_name": "Phoenix Suns", "abbreviation": "PHX", "image_url": "/images/teams/PHO.png"},
     {"team_id": "DEN", "team_name": "Portland Trail Blazers", "abbreviation": "POR", "image_url": "/images/teams/POR.png"},
     {"team_id": "DEN", "team_name": "Sacramento Kings", "abbreviation": "SAC", "image_url": "/images/teams/SAC.png"},
