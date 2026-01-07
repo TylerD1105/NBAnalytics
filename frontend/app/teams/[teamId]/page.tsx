@@ -1,12 +1,15 @@
+
 type Props = {
-  params: { teamId: string };
+  params: Promise<{ teamId: string }>;
 };
 
-export default function TeamPage({ params }: Props) {
+export default async function TeamPage({ params }: Props) {
+  const {teamId} = await params;
   return (
     <main style={{ padding: 24 }}>
-      <h1>Team: {params.teamId}</h1>
+      <h1>Team: {teamId}</h1>
       <p>Team analytics coming soon.</p>
+      
     </main>
   );
 }
