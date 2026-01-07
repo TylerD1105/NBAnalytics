@@ -29,7 +29,7 @@ teamList = [
     {"team_id": "DEN", "team_name": "Sacramento Kings", "abbreviation": "SAC", "image_url": "/images/teams/SAC.png"},
     {"team_id": "DEN", "team_name": "San Antonio Spurs", "abbreviation": "SAS", "image_url": "/images/teams/SAS.png"},
     {"team_id": "DEN", "team_name": "Toronto Raptors", "abbreviation": "TOR", "image_url": "/images/teams/TOR.png"},
-    {"team_id": "DEN", "team_name": "Utah Jazz", "abbreviation": "UTA", "image_url": "/images/teams/UTH.png"},
+    {"team_id": "DEN", "team_name": "Utah Jazz", "abbreviation": "UTA", "image_url": "/images/teams/UTA.png"},
     {"team_id": "DEN", "team_name": "Washington Wizards", "abbreviation": "WAS", "image_url": "/images/teams/WAS.png"}
 
 ]
