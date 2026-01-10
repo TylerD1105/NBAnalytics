@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import SwipeCarousel from '../../../components/SwipeCarousel/SwipeCarousel';
+import SwipeCarousel from '../../components/SwipeCarousel/SwipeCarousel';
 
 const imgs = [
     "/images/ATL.png",

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import SwipeCarousel from "../components/SwipeCarousel/SwipeCarousel";
+import SwipeCarousel from "./components/SwipeCarousel/SwipeCarousel";
 
 type Team = {
   id: string;
